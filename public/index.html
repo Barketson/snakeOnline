@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Неоновая змейка</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- Главное меню -->
+    <section id="screen-menu" class="screen active">
+      <div class="panel">
+        <h1 class="title">Змейка</h1>
+        <p class="subtitle">Онлайн-арена</p>
+        <label class="field">
+          <span class="field-label">Ник</span>
+          <input id="nick" type="text" maxlength="16" placeholder="Ваш ник" autocomplete="off">
+        </label>
+        <div class="menu-buttons">
+          <button id="btn-create" class="btn btn-primary">Создать комнату</button>
+          <div class="join-row">
+            <input id="room-code" type="text" maxlength="5" placeholder="Код" autocomplete="off">
+            <button id="btn-join" class="btn">Войти по коду</button>
+          </div>
+        </div>
+        <p id="menu-error" class="error" role="alert"></p>
+        <p id="ws-status" class="status">Подключение…</p>
+      </div>
+    </section>
+
+    <!-- Лобби -->
+    <section id="screen-lobby" class="screen">
+      <div class="panel panel-wide">
+        <h2 class="title title-small">Лобби</h2>
+        <p class="room-line">
+          Код комнаты: <strong id="lobby-code" class="room-code"></strong>
+          <button id="btn-copy-link" class="btn btn-small">Скопировать ссылку</button>
+        </p>
+        <ul id="lobby-players" class="player-list"></ul>
+        <div class="menu-buttons">
+          <button id="btn-start" class="btn btn-primary">Начать</button>
+          <button id="btn-leave-lobby" class="btn btn-quiet">Покинуть комнату</button>
+        </div>
+        <p id="lobby-note" class="status"></p>
+      </div>
+    </section>
+
+    <!-- Игра -->
+    <section id="screen-game" class="screen">
+      <div class="game-wrap">
+        <div class="hud">
+          <div id="hud-players" class="hud-players"></div>
+          <div id="hud-timer" class="hud-timer">--:--</div>
+        </div>
+        <div class="canvas-box">
+          <canvas id="game-canvas"></canvas>
+          <div id="countdown-overlay" class="countdown-overlay hidden"></div>
+        </div>
+        <p class="hint">Управление: стрелки или WASD</p>
+      </div>
+    </section>
+
+    <!-- Итоги раунда -->
+    <section id="screen-results" class="screen">
+      <div class="panel panel-wide">
+        <h2 class="title title-small">Итоги раунда</h2>
+        <h3 class="table-title">Раунд</h3>
+        <table class="score-table">
+          <thead>
+            <tr><th>Место</th><th>Игрок</th><th>Очки</th><th>Длина</th></tr>
+          </thead>
+          <tbody id="results-round"></tbody>
+        </table>
+        <h3 class="table-title">Общий счёт</h3>
+        <table class="score-table">
+          <thead>
+            <tr><th>Игрок</th><th>Сумма очков</th></tr>
+          </thead>
+          <tbody id="results-total"></tbody>
+        </table>
+        <div class="menu-buttons">
+          <button id="btn-next-round" class="btn btn-primary">Ещё раунд</button>
+          <button id="btn-leave-results" class="btn btn-quiet">Выйти в меню</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <script type="module" src="/client.js"></script>
+</body>
+</html>

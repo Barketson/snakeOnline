@@ -1,0 +1,323 @@
+/* ===== база ===== */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: #04050a;
+  color: #cfd8e3;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 15px;
+}
+
+#app { height: 100%; }
+
+/* ===== экраны ===== */
+.screen {
+  display: none;
+  height: 100%;
+  padding: 24px;
+  overflow: auto;
+}
+
+.screen.active { display: flex; }
+
+#screen-menu, #screen-lobby, #screen-results {
+  align-items: center;
+  justify-content: center;
+}
+
+#screen-game { flex-direction: column; }
+
+/* ===== панели ===== */
+.panel {
+  width: 100%;
+  max-width: 400px;
+  padding: 32px 28px;
+  background: rgba(10, 14, 24, 0.92);
+  border: 1px solid #1c2333;
+  border-radius: 12px;
+  box-shadow: 0 0 24px rgba(43, 134, 168, 0.18), inset 0 0 40px rgba(43, 134, 168, 0.04);
+}
+
+.panel-wide { max-width: 520px; }
+
+.title {
+  margin: 0;
+  color: #e8f6ff;
+  font-family: "Press Start 2P", monospace;
+  font-size: 24px;
+  letter-spacing: 2px;
+  text-align: center;
+  text-shadow: 0 0 12px rgba(159, 232, 255, 0.7), 0 0 32px rgba(159, 232, 255, 0.35);
+}
+
+.title-small { font-size: 16px; margin-bottom: 8px; }
+
+.subtitle {
+  margin: 12px 0 24px;
+  color: #5b6b82;
+  text-align: center;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+/* ===== формы ===== */
+.field { display: block; margin-bottom: 16px; }
+
+.field-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #8a99ad;
+  font-size: 13px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  background: #070a10;
+  border: 1px solid #232c40;
+  border-radius: 8px;
+  color: #e8f6ff;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input[type="text"]:focus {
+  border-color: #2b86a8;
+  box-shadow: 0 0 10px rgba(43, 134, 168, 0.4);
+}
+
+#room-code {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  flex: 1;
+}
+
+.menu-buttons { display: flex; flex-direction: column; gap: 10px; }
+
+.join-row { display: flex; gap: 8px; }
+
+/* ===== кнопки ===== */
+.btn {
+  padding: 12px 16px;
+  background: #0d1420;
+  border: 1px solid #27324a;
+  border-radius: 8px;
+  color: #cfd8e3;
+  font-family: "Press Start 2P", monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, color 0.15s;
+}
+
+.btn:hover {
+  background: #131c2c;
+  border-color: #2b86a8;
+  color: #e8f6ff;
+  box-shadow: 0 0 12px rgba(43, 134, 168, 0.35);
+}
+
+.btn-primary {
+  background: #0d2b38;
+  border-color: #2b86a8;
+  color: #9fe8ff;
+  text-shadow: 0 0 8px rgba(159, 232, 255, 0.5);
+}
+
+.btn-primary:hover {
+  background: #123a4c;
+  border-color: #3fc3ec;
+  box-shadow: 0 0 16px rgba(63, 195, 236, 0.45);
+}
+
+.btn-quiet { background: transparent; border-color: #1c2333; color: #6b7a90; }
+
+.btn-quiet:hover { border-color: #35425f; color: #9aa8bc; box-shadow: none; }
+
+.btn-small { padding: 6px 10px; font-size: 8px; }
+
+.btn[disabled] { opacity: 0.4; cursor: default; box-shadow: none; }
+
+/* ===== статусы ===== */
+.error { min-height: 20px; margin: 12px 0 0; color: #ff6b81; font-size: 13px; text-shadow: 0 0 8px rgba(255, 107, 129, 0.4); }
+
+.status { margin: 12px 0 0; color: #5b6b82; font-size: 13px; }
+
+/* ===== лобби ===== */
+.room-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 16px;
+  color: #8a99ad;
+}
+
+.room-code {
+  color: #e8f6ff;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px rgba(159, 232, 255, 0.5);
+}
+
+.player-list {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.player-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #070a10;
+  border: 1px solid #1c2333;
+  border-radius: 8px;
+}
+
+.player-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.35);
+}
+
+.player-name { flex: 1; color: #e8f6ff; overflow: hidden; text-overflow: ellipsis; }
+
+.host-badge {
+  padding: 3px 8px;
+  border: 1px solid #2b86a8;
+  border-radius: 10px;
+  color: #9fe8ff;
+  font-size: 10px;
+  text-shadow: 0 0 6px rgba(159, 232, 255, 0.5);
+}
+
+.you-badge {
+  padding: 3px 8px;
+  background: #131a26;
+  border-radius: 10px;
+  color: #8a99ad;
+  font-size: 10px;
+}
+
+/* ===== игра ===== */
+.game-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 6px 2px 12px;
+}
+
+.hud-players { display: flex; flex-wrap: wrap; gap: 14px; }
+
+.hud-player { display: flex; align-items: center; gap: 6px; font-size: 14px; }
+
+.hud-player .player-dot { width: 10px; height: 10px; }
+
+.hud-player.dead { opacity: 0.35; }
+
+.hud-player-name { color: #e8f6ff; }
+
+.hud-player-stats { color: #8a99ad; font-size: 13px; }
+
+.hud-timer {
+  color: #9fe8ff;
+  font-family: "Press Start 2P", monospace;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(159, 232, 255, 0.6);
+}
+
+.canvas-box {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#game-canvas {
+  background: #04050a;
+  border: 1px solid #1c2333;
+  border-radius: 8px;
+  max-width: 100%;
+  max-height: 100%;
+  box-shadow: 0 0 24px rgba(43, 134, 168, 0.22);
+}
+
+.countdown-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e8f6ff;
+  font-family: "Press Start 2P", monospace;
+  font-size: 72px;
+  text-shadow: 0 0 24px rgba(159, 232, 255, 0.8), 0 0 60px rgba(159, 232, 255, 0.4);
+  pointer-events: none;
+}
+
+.countdown-overlay.hidden { display: none; }
+
+.hint { margin: 10px 0 0; text-align: center; color: #5b6b82; font-size: 13px; }
+
+/* ===== таблицы итогов ===== */
+.table-title {
+  margin: 16px 0 6px;
+  color: #8a99ad;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.score-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.score-table th {
+  text-align: left;
+  padding: 6px 10px;
+  color: #5b6b82;
+  font-weight: normal;
+  font-size: 12px;
+  border-bottom: 1px solid #1c2333;
+}
+
+.score-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #131a26;
+  color: #cfd8e3;
+}
+
+.score-table .cell-player {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

@@ -1,0 +1,17 @@
+# Зависимости
+node_modules/
+
+# Локальный npm-кэш (артефакт установки в песочнице)
+.npm-cache/
+
+# Логи
+*.log
+npm-debug.log*
+
+# Служебные файлы этапов разработки (не часть игры)
+snake-prompts/
+snake-multiplayer-prompt.md
+
+# Служебные файлы ОС/редакторов
+.DS_Store
+Thumbs.db
